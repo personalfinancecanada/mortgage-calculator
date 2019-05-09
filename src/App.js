@@ -5,13 +5,14 @@ import MortgageCalculator from './MortgageCalculator';
 
 
 function App() {
+  //props.testing = "test";
   return (
     <div>
         <Navbar bg="dark" variant="dark">
           <Navbar.Brand href="/">Mortgage Calculator</Navbar.Brand>
         </Navbar>
         <Container id="mainContainer">
-          <MortgageCalculator></MortgageCalculator>
+          <MortgageCalculator test="test"></MortgageCalculator>
         </Container>
     </div>
   );
