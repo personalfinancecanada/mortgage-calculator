@@ -71,7 +71,7 @@ class MortgageCalculator extends React.Component {
                                     <Form.Label column sm={6}>Interest Rate</Form.Label>
                                     <Col sm={6}>
                                         <InputGroup>
-                                            <Form.Control type="number" value={this.state.interestRate} onChange={this.handleChangeInterestRate}/>
+                                            <Form.Control type="number" step="0.01" value={this.state.interestRate} onChange={this.handleChangeInterestRate}/>
                                             <InputGroup.Append>
                                                 <InputGroup.Text>%</InputGroup.Text>
                                             </InputGroup.Append>
