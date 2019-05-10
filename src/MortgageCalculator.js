@@ -1,11 +1,15 @@
 import React from 'react';
+
 import { Button, Form, InputGroup, Card, Row, Col } from 'react-bootstrap';
 import { createBrowserHistory } from 'history';
+import MortgageSummary from './MortgageSummary';
 
 class MortgageCalculator extends React.Component {
     constructor(props) {
         super(props);
         
+        this.mortgageCalculator = require("mortgage-calculator");
+
         this.queryString = require('query-string');
         this.history = createBrowserHistory();
         const location = this.history.location;
@@ -15,7 +19,7 @@ class MortgageCalculator extends React.Component {
             mortgageAmount: urlParameters.mortgageAmount == null ? 100000 : urlParameters.mortgageAmount,
             interestRate: urlParameters.interestRate == null ? 3.50 : urlParameters.interestRate,
             amortizationPeriod: urlParameters.amortizationPeriod == null ? 25 : urlParameters.amortizationPeriod,
-            paymentFrequency: urlParameters.paymentFrequency == null ? "Monthly" : urlParameters.paymentFrequency,
+            paymentFrequency: urlParameters.paymentFrequency == null ? 12 : urlParameters.paymentFrequency,
             term: urlParameters.term == null ? 5 : urlParameters.term
         }
 
@@ -47,6 +51,11 @@ class MortgageCalculator extends React.Component {
             pathname: this.history.location.pathname,
             search: '?' + this.queryString.stringify(this.state)
           });
+        console.log(this.mortgageCalculator.calculateMortgage({"initialDeposit": 100000,
+        "monthlyIncome": 1,
+        "interest": 5,
+        "term": 5}));
+
         event.preventDefault();
     }
     render () {
@@ -55,9 +64,10 @@ class MortgageCalculator extends React.Component {
                 <Col lg="6">
                     <Card>
                         <Card.Body>
+                            <Card.Title>Mortgage Calculator</Card.Title>
                             <Form onSubmit={this.handleSubmit}>
                                 <Form.Group as={Row} controlId="formGridMortgageAmount">
-                                    <Form.Label column sm={6}>Mortgage Amount</Form.Label>
+                                    <Form.Label column sm={6}>Amount</Form.Label>
                                     <Col sm={6}>
                                         <InputGroup>
                                             <InputGroup.Prepend>
@@ -117,6 +127,9 @@ class MortgageCalculator extends React.Component {
                                             <InputGroup.Append>
                                                 <InputGroup.Text>Year(s)</InputGroup.Text>
                                             </InputGroup.Append>
+                                            <Form.Text>
+                                            Note: The maximum amortization period with less than a 20 percent down payment is 25 years.
+                                            </Form.Text>
                                         </InputGroup>
                                     </Col>
                                 </Form.Group>
@@ -124,10 +137,10 @@ class MortgageCalculator extends React.Component {
                                     <Form.Label column sm={6}>Payment Frequency</Form.Label>
                                     <Col sm={6}>
                                         <Form.Control as="select" value={this.state.paymentFrequency} onChange={this.handleChangePaymentFrequency}>
-                                            <option>Weekly</option>
-                                            <option>Bi-Weekly</option>
-                                            <option>Semi-Monthly</option>
-                                            <option>Monthly</option>
+                                            <option value="12">Monthly</option>
+                                            <option value="24">Semi-Monthly</option>
+                                            <option value="26">Bi-Weekly</option>
+                                            <option value="52">Weekly</option>
                                         </Form.Control>
                                     </Col>
                                 </Form.Group>
@@ -161,7 +174,7 @@ class MortgageCalculator extends React.Component {
                     </Card>
                 </Col>
                 <Col lg="6">
-                    <p>Results</p>
+                    <MortgageSummary mortgageAmount={this.state.mortgageAmount} interestRate={this.state.interestRate} amortizationPeriod={this.state.amortizationPeriod} paymentFrequency={this.state.paymentFrequency} term={this.state.term}></MortgageSummary>
                 </Col>
             </Row>
         );
