@@ -11,7 +11,7 @@ function App() {
         <Navbar bg="dark" variant="dark">
           <Navbar.Brand href="/">Mortgage Calculator</Navbar.Brand>
         </Navbar>
-        <Container id="mainContainer">
+        <Container id="mainContainer" fluid="true">
           <MortgageCalculator test="test"></MortgageCalculator>
         </Container>
     </div>
