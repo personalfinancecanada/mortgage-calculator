@@ -7,8 +7,6 @@ import MortgageSummary from './MortgageSummary';
 class MortgageCalculator extends React.Component {
     constructor(props) {
         super(props);
-        
-        this.mortgageCalculator = require("mortgage-calculator");
 
         this.queryString = require('query-string');
         this.history = createBrowserHistory();
@@ -51,11 +49,6 @@ class MortgageCalculator extends React.Component {
             pathname: this.history.location.pathname,
             search: '?' + this.queryString.stringify(this.state)
           });
-        console.log(this.mortgageCalculator.calculateMortgage({"initialDeposit": 100000,
-        "monthlyIncome": 1,
-        "interest": 5,
-        "term": 5}));
-
         event.preventDefault();
     }
     render () {

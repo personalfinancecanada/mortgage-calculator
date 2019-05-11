@@ -19,7 +19,7 @@ class MortgageSummary extends React.Component {
         var interestTotalTerm = 0;
         var principalTotalTerm = 0;
         for (var year=1; year<=props.amortizationPeriod; year++) { 
-            if (year > term && term) {
+            if (year > props.term && term) {
                 term = false;
                 interestTotalTerm = interestTotal;
                 principalTotalTerm = principalTotal;
@@ -37,13 +37,13 @@ class MortgageSummary extends React.Component {
         this.state = {
             numberOfPaymentsTerm: props.term * props.paymentFrequency,
             numberOfPaymentsAmortizationPeriod: props.amortizationPeriod * props.paymentFrequency,
-            mortgagePayment: parseFloat(mortgagePayment).toFixed(2),
-            interestTotalTerm: parseFloat(interestTotalTerm).toFixed(2),
-            principalTotalTerm: parseFloat(principalTotalTerm).toFixed(2),
-            interestTotal: parseFloat(interestTotal).toFixed(2),
-            principalTotal: parseFloat(principalTotal).toFixed(2),
-            totalCostTerm:parseFloat(interestTotalTerm+principalTotalTerm).toFixed(2),
-            totalCost:parseFloat(interestTotal+principalTotal).toFixed(2),
+            mortgagePayment: mortgagePayment,
+            interestTotalTerm: interestTotalTerm,
+            principalTotalTerm: principalTotalTerm,
+            interestTotal: interestTotal,
+            principalTotal: principalTotal,
+            totalCostTerm: interestTotalTerm+principalTotalTerm,
+            totalCost: interestTotal+principalTotal,
             amortization: amortization
         }
         
