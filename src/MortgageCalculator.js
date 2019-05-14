@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Button, Form, InputGroup, Card, Row, Col } from 'react-bootstrap';
 import { createBrowserHistory } from 'history';
+import { calculateMortgage } from './MortgageCalculation';
 import MortgageSummary from './MortgageSummary';
 
 class MortgageCalculator extends React.Component {
@@ -52,6 +53,7 @@ class MortgageCalculator extends React.Component {
         event.preventDefault();
     }
     render () {
+        var mortgage = calculateMortgage(this.state.mortgageAmount,this.state.interestRate,this.state.paymentFrequency,this.state.amortizationPeriod,this.state.term);
         return (
             <Card>
                 <Card.Body>
@@ -162,7 +164,7 @@ class MortgageCalculator extends React.Component {
                         </Button>
                     </Form>
                 </Card.Body>
-                <MortgageSummary mortgageAmount={this.state.mortgageAmount} interestRate={this.state.interestRate} amortizationPeriod={this.state.amortizationPeriod} paymentFrequency={this.state.paymentFrequency} term={this.state.term}></MortgageSummary>
+                <MortgageSummary data={mortgage}></MortgageSummary>
             </Card>
         );
     }

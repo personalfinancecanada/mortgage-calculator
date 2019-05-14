@@ -2,53 +2,6 @@ import React from 'react';
 import { Card, Table } from 'react-bootstrap';
 
 class MortgageSummary extends React.Component {
-    constructor(props) {
-        super(props);
-
-        console.log(props);
-
-        var computedInterest = Math.pow(Math.pow((1+(props.interestRate/100/2)),2),(1/props.paymentFrequency))-1;
-        console.log(computedInterest);
-        var mortgagePayment = (props.mortgageAmount * computedInterest) / (1- Math.pow((1+computedInterest), (-1 * props.amortizationPeriod *props.paymentFrequency)));
-        console.log(mortgagePayment);
-        var balance = props.mortgageAmount;
-        var amortization = [];
-        var term = true;
-        var interestTotal = 0;  
-        var principalTotal = 0; 
-        var interestTotalTerm = 0;
-        var principalTotalTerm = 0;
-        
-        for (var year=1; year<=props.amortizationPeriod; year++) { 
-            if (year > props.term && term) {
-                term = false;
-                interestTotalTerm = interestTotal;
-                principalTotalTerm = principalTotal;
-            } 
-            for (var month=1; month<=props.paymentFrequency; month++) {
-                var interestMonth = balance * computedInterest;
-                var principalMonth = mortgagePayment - interestMonth; 
-                interestTotal = interestTotal + interestMonth;
-                principalTotal = principalTotal + principalMonth;
-                balance = balance - principalMonth;
-                amortization.push({principalTotal: principalTotal, interestTotal: interestTotal, principalMonth: principalMonth, interestMonth: interestMonth, balance: balance, term: term});
-            }
-        }
-
-        this.state = {
-            numberOfPaymentsTerm: props.term * props.paymentFrequency,
-            numberOfPaymentsAmortizationPeriod: props.amortizationPeriod * props.paymentFrequency,
-            mortgagePayment: mortgagePayment,
-            interestTotalTerm: interestTotalTerm,
-            principalTotalTerm: principalTotalTerm,
-            interestTotal: interestTotal,
-            principalTotal: principalTotal,
-            totalCostTerm: interestTotalTerm+principalTotalTerm,
-            totalCost: interestTotal+principalTotal,
-            amortization: amortization
-        }
-        
-    }
     render() {
         const formatCurrency = (currencyValue) => {
             return (
@@ -62,7 +15,7 @@ class MortgageSummary extends React.Component {
         const textAlignRight = {
             textAlign: 'right'
         };
-        var items = this.state.amortization.map(function (amortizationPeriod, index) {
+        var items = this.props.data.amortization.map(function (amortizationPeriod, index) {
             return (
                 <tr key={index}>
                     <td>{index + 1}</td>
@@ -88,28 +41,33 @@ class MortgageSummary extends React.Component {
                     <tbody>
                         <tr>
                             <td>Number of Payments</td>
-                            <td style={textAlignRight}>{this.state.numberOfPaymentsTerm}</td>
-                            <td style={textAlignRight}>{this.state.numberOfPaymentsAmortizationPeriod}</td>
+                            <td style={textAlignRight}>{this.props.data.numberOfPaymentsTerm}</td>
+                            <td style={textAlignRight}>{this.props.data.numberOfPaymentsAmortizationPeriod}</td>
                         </tr>
                         <tr>
                             <td>Mortgage Payment</td>
-                            <td style={textAlignRight}>{formatCurrency(this.state.mortgagePayment)}</td>
-                            <td style={textAlignRight}>{formatCurrency(this.state.mortgagePayment)}</td>
+                            <td style={textAlignRight}>{formatCurrency(this.props.data.mortgagePayment)}</td>
+                            <td style={textAlignRight}>{formatCurrency(this.props.data.mortgagePayment)}</td>
                         </tr>
                         <tr>
                             <td>Principal Payments</td>
-                            <td style={textAlignRight}>{formatCurrency(this.state.principalTotalTerm)}</td>
-                            <td style={textAlignRight}>{formatCurrency(this.state.principalTotal)}</td>
+                            <td style={textAlignRight}>{formatCurrency(this.props.data.principalTotalTerm)}</td>
+                            <td style={textAlignRight}>{formatCurrency(this.props.data.principalTotal)}</td>
                         </tr>
                         <tr>
                             <td>Interest Payments</td>
-                            <td style={textAlignRight}>{formatCurrency(this.state.interestTotalTerm)}</td>
-                            <td style={textAlignRight}>{formatCurrency(this.state.interestTotal)}</td>
+                            <td style={textAlignRight}>{formatCurrency(this.props.data.interestTotalTerm)}</td>
+                            <td style={textAlignRight}>{formatCurrency(this.props.data.interestTotal)}</td>
+                        </tr>
+                        <tr>
+                            <td>Balance Remaining</td>
+                            <td style={textAlignRight}>{formatCurrency(this.props.data.termBalance)}</td>
+                            <td style={textAlignRight}>{formatCurrency(this.props.data.balance)}</td>
                         </tr>
                         <tr>
                             <td>Total Cost</td>
-                            <td style={textAlignRight}>{formatCurrency(this.state.totalCostTerm)}</td>
-                            <td style={textAlignRight}>{formatCurrency(this.state.totalCost)}</td>
+                            <td style={textAlignRight}>{formatCurrency(this.props.data.totalCostTerm)}</td>
+                            <td style={textAlignRight}>{formatCurrency(this.props.data.totalCost)}</td>
                         </tr>
                     </tbody>
                 </Table>
