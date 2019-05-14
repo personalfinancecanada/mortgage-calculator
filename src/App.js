@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import { Navbar, Container } from 'react-bootstrap';
+import { Navbar, Container, CardDeck } from 'react-bootstrap';
 import MortgageCalculator from './MortgageCalculator';
 
 class App extends React.Component{
@@ -12,7 +12,9 @@ class App extends React.Component{
             <Navbar.Brand href="/">Mortgage Calculator</Navbar.Brand>
           </Navbar>
           <Container id="mainContainer" fluid="true">
-            <MortgageCalculator></MortgageCalculator>
+            <CardDeck>
+              <MortgageCalculator></MortgageCalculator>
+            </CardDeck>
           </Container>
       </div>
     );

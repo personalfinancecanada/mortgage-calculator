@@ -53,123 +53,117 @@ class MortgageCalculator extends React.Component {
     }
     render () {
         return (
-            <Row>
-                <Col lg="6">
-                    <Card>
-                        <Card.Body>
-                            <Card.Title>Mortgage Calculator</Card.Title>
-                            <Form onSubmit={this.handleSubmit}>
-                                <Form.Group as={Row} controlId="formGridMortgageAmount">
-                                    <Form.Label column sm={6}>Amount</Form.Label>
-                                    <Col sm={6}>
-                                        <InputGroup>
-                                            <InputGroup.Prepend>
-                                                <InputGroup.Text>$</InputGroup.Text>
-                                            </InputGroup.Prepend>
-                                            <Form.Control type="number" value={this.state.mortgageAmount} onChange={this.handleChangeMortgageAmount}/>
-                                        </InputGroup>
-                                    </Col>
-                                </Form.Group>
-                                <Form.Group as={Row} controlId="formGridInterestRate">
-                                    <Form.Label column sm={6}>Interest Rate</Form.Label>
-                                    <Col sm={6}>
-                                        <InputGroup>
-                                            <Form.Control type="number" step="0.01" value={this.state.interestRate} onChange={this.handleChangeInterestRate}/>
-                                            <InputGroup.Append>
-                                                <InputGroup.Text>%</InputGroup.Text>
-                                            </InputGroup.Append>
-                                        </InputGroup>
-                                    </Col>
-                                </Form.Group>
-                                <Form.Group as={Row} controlId="formGridAmortizationPeriod">
-                                    <Form.Label column sm={6}>Amortization Period</Form.Label>
-                                    <Col sm={6}>
-                                        <InputGroup>
-                                            <Form.Control as="select" value={this.state.amortizationPeriod} onChange={this.handleChangeAmortizationPeriod}>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                <option>6</option>
-                                                <option>7</option>
-                                                <option>8</option>
-                                                <option>9</option>
-                                                <option>10</option>
-                                                <option>11</option>
-                                                <option>12</option>
-                                                <option>13</option>
-                                                <option>14</option>
-                                                <option>15</option>
-                                                <option>16</option>
-                                                <option>17</option>
-                                                <option>18</option>
-                                                <option>19</option>
-                                                <option>20</option>
-                                                <option>21</option>
-                                                <option>22</option>
-                                                <option>23</option>
-                                                <option>24</option>
-                                                <option>25</option>
-                                                <option>26</option>
-                                                <option>27</option>
-                                                <option>28</option>
-                                                <option>29</option>
-                                                <option>30</option>
-                                            </Form.Control>
-                                            <InputGroup.Append>
-                                                <InputGroup.Text>Year(s)</InputGroup.Text>
-                                            </InputGroup.Append>
-                                            <Form.Text>
-                                            Note: The maximum amortization period with less than a 20 percent down payment is 25 years.
-                                            </Form.Text>
-                                        </InputGroup>
-                                    </Col>
-                                </Form.Group>
-                                <Form.Group as={Row} controlId="formGridPaymentFrequency">
-                                    <Form.Label column sm={6}>Payment Frequency</Form.Label>
-                                    <Col sm={6}>
-                                        <Form.Control as="select" value={this.state.paymentFrequency} onChange={this.handleChangePaymentFrequency}>
-                                            <option value="12">Monthly</option>
-                                            <option value="24">Semi-Monthly</option>
-                                            <option value="26">Bi-Weekly</option>
-                                            <option value="52">Weekly</option>
-                                        </Form.Control>
-                                    </Col>
-                                </Form.Group>
-                                <Form.Group as={Row} controlId="formGridTerm">
-                                    <Form.Label column sm={6}>Term</Form.Label>
-                                    <Col sm={6}>
-                                        <InputGroup>
-                                            <Form.Control as="select" value={this.state.term} onChange={this.handleChangeTerm}>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                <option>6</option>
-                                                <option>7</option>
-                                                <option>8</option>
-                                                <option>9</option>
-                                                <option>10</option>
-                                            </Form.Control>
-                                            <InputGroup.Append>
-                                                <InputGroup.Text>Year(s)</InputGroup.Text>
-                                            </InputGroup.Append>
-                                        </InputGroup>
-                                    </Col>
-                                </Form.Group>
-                                <Button type="submit" >
-                                    Calculate
-                                </Button>
-                            </Form>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col lg="6">
-                    <MortgageSummary mortgageAmount={this.state.mortgageAmount} interestRate={this.state.interestRate} amortizationPeriod={this.state.amortizationPeriod} paymentFrequency={this.state.paymentFrequency} term={this.state.term}></MortgageSummary>
-                </Col>
-            </Row>
+            <Card>
+                <Card.Body>
+                    <Card.Title>Mortgage Calculator</Card.Title>
+                    <Form onSubmit={this.handleSubmit}>
+                        <Form.Group as={Row} controlId="formGridMortgageAmount">
+                            <Form.Label column sm={6}>Amount</Form.Label>
+                            <Col sm={6}>
+                                <InputGroup>
+                                    <InputGroup.Prepend>
+                                        <InputGroup.Text>$</InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                    <Form.Control type="number" value={this.state.mortgageAmount} onChange={this.handleChangeMortgageAmount}/>
+                                </InputGroup>
+                            </Col>
+                        </Form.Group>
+                        <Form.Group as={Row} controlId="formGridInterestRate">
+                            <Form.Label column sm={6}>Interest Rate</Form.Label>
+                            <Col sm={6}>
+                                <InputGroup>
+                                    <Form.Control type="number" step="0.01" value={this.state.interestRate} onChange={this.handleChangeInterestRate}/>
+                                    <InputGroup.Append>
+                                        <InputGroup.Text>%</InputGroup.Text>
+                                    </InputGroup.Append>
+                                </InputGroup>
+                            </Col>
+                        </Form.Group>
+                        <Form.Group as={Row} controlId="formGridAmortizationPeriod">
+                            <Form.Label column sm={6}>Amortization Period</Form.Label>
+                            <Col sm={6}>
+                                <InputGroup>
+                                    <Form.Control as="select" value={this.state.amortizationPeriod} onChange={this.handleChangeAmortizationPeriod}>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                        <option>13</option>
+                                        <option>14</option>
+                                        <option>15</option>
+                                        <option>16</option>
+                                        <option>17</option>
+                                        <option>18</option>
+                                        <option>19</option>
+                                        <option>20</option>
+                                        <option>21</option>
+                                        <option>22</option>
+                                        <option>23</option>
+                                        <option>24</option>
+                                        <option>25</option>
+                                        <option>26</option>
+                                        <option>27</option>
+                                        <option>28</option>
+                                        <option>29</option>
+                                        <option>30</option>
+                                    </Form.Control>
+                                    <InputGroup.Append>
+                                        <InputGroup.Text>Year(s)</InputGroup.Text>
+                                    </InputGroup.Append>
+                                    <Form.Text>
+                                    Note: The maximum amortization period with less than a 20 percent down payment is 25 years.
+                                    </Form.Text>
+                                </InputGroup>
+                            </Col>
+                        </Form.Group>
+                        <Form.Group as={Row} controlId="formGridPaymentFrequency">
+                            <Form.Label column sm={6}>Payment Frequency</Form.Label>
+                            <Col sm={6}>
+                                <Form.Control as="select" value={this.state.paymentFrequency} onChange={this.handleChangePaymentFrequency}>
+                                    <option value="12">Monthly</option>
+                                    <option value="24">Semi-Monthly</option>
+                                    <option value="26">Bi-Weekly</option>
+                                    <option value="52">Weekly</option>
+                                </Form.Control>
+                            </Col>
+                        </Form.Group>
+                        <Form.Group as={Row} controlId="formGridTerm">
+                            <Form.Label column sm={6}>Term</Form.Label>
+                            <Col sm={6}>
+                                <InputGroup>
+                                    <Form.Control as="select" value={this.state.term} onChange={this.handleChangeTerm}>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                    </Form.Control>
+                                    <InputGroup.Append>
+                                        <InputGroup.Text>Year(s)</InputGroup.Text>
+                                    </InputGroup.Append>
+                                </InputGroup>
+                            </Col>
+                        </Form.Group>
+                        <Button type="submit" >
+                            Calculate
+                        </Button>
+                    </Form>
+                </Card.Body>
+                <MortgageSummary mortgageAmount={this.state.mortgageAmount} interestRate={this.state.interestRate} amortizationPeriod={this.state.amortizationPeriod} paymentFrequency={this.state.paymentFrequency} term={this.state.term}></MortgageSummary>
+            </Card>
         );
     }
 }
