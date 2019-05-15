@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Table } from 'react-bootstrap';
+import { Card, Table, ProgressBar } from 'react-bootstrap';
 
 class MortgageSummary extends React.Component {
     render() {
@@ -15,12 +15,21 @@ class MortgageSummary extends React.Component {
         const textAlignRight = {
             textAlign: 'right'
         };
+        const minWidth = {
+            minWidth:'50px'
+        }
         var items = this.props.data.amortization.map(function (amortizationPeriod, index) {
             return (
                 <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{Math.round(amortizationPeriod.principalTotal).toLocaleString()}</td>
                     <td>{Math.round(amortizationPeriod.principalMonth).toLocaleString()}</td>
+                    <td>
+                        <ProgressBar col>
+                            <ProgressBar striped variant="success" now={amortizationPeriod.principalMonth/(amortizationPeriod.principalMonth+amortizationPeriod.interestMonth)*100} key={1} />
+                            <ProgressBar variant="warning" now={amortizationPeriod.interestMonth/(amortizationPeriod.principalMonth+amortizationPeriod.interestMonth)*100} key={2} />
+                        </ProgressBar>
+                    </td>
                     <td>{Math.round(amortizationPeriod.interestMonth).toLocaleString()}</td>
                     <td>{Math.round(amortizationPeriod.interestTotal).toLocaleString()}</td>
                     <td>{Math.round(amortizationPeriod.balance).toLocaleString()}</td>
@@ -76,6 +85,7 @@ class MortgageSummary extends React.Component {
                         <th>Period</th>
                         <th>Principal Total</th>
                         <th>Principal</th>
+                        <th style={minWidth}></th>
                         <th>Interest</th>
                         <th>Interest Total</th>
                         <th>Total Cost</th>
