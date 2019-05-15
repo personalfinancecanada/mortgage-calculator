@@ -160,7 +160,7 @@ class MortgageCalculator extends React.Component {
                             </Col>
                         </Form.Group>
                         <Button type="submit" >
-                            Calculate
+                            Create URL
                         </Button>
                     </Form>
                 </Card.Body>

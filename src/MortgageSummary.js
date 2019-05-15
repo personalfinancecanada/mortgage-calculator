@@ -19,20 +19,22 @@ class MortgageSummary extends React.Component {
             minWidth:'50px'
         }
         var items = this.props.data.amortization.map(function (amortizationPeriod, index) {
+            var principalPercent = formatCurrency(amortizationPeriod.principalMonth/(amortizationPeriod.principalMonth+amortizationPeriod.interestMonth)*100); 
+            var interestPerecent = formatCurrency(amortizationPeriod.interestMonth/(amortizationPeriod.principalMonth+amortizationPeriod.interestMonth)*100);
             return (
                 <tr key={index}>
                     <td>{index + 1}</td>
-                    <td>{Math.round(amortizationPeriod.principalTotal).toLocaleString()}</td>
-                    <td>{Math.round(amortizationPeriod.principalMonth).toLocaleString()}</td>
+                    <td>{formatCurrency(amortizationPeriod.principalTotal)}</td>
+                    <td>{formatCurrency(amortizationPeriod.principalMonth)}</td>
                     <td>
                         <ProgressBar col>
-                            <ProgressBar striped variant="success" now={amortizationPeriod.principalMonth/(amortizationPeriod.principalMonth+amortizationPeriod.interestMonth)*100} key={1} />
-                            <ProgressBar variant="warning" now={amortizationPeriod.interestMonth/(amortizationPeriod.principalMonth+amortizationPeriod.interestMonth)*100} key={2} />
+                            <ProgressBar striped variant="success" now={principalPercent} label={principalPercent} key={1} />
+                            <ProgressBar variant="danger" now={interestPerecent} label={interestPerecent} key={2} />
                         </ProgressBar>
                     </td>
-                    <td>{Math.round(amortizationPeriod.interestMonth).toLocaleString()}</td>
-                    <td>{Math.round(amortizationPeriod.interestTotal).toLocaleString()}</td>
-                    <td>{Math.round(amortizationPeriod.balance).toLocaleString()}</td>
+                    <td>{formatCurrency(amortizationPeriod.interestMonth)}</td>
+                    <td>{formatCurrency(amortizationPeriod.interestTotal)}</td>
+                    <td>{formatCurrency(amortizationPeriod.balance)}</td>
                 </tr>
             );
         });
@@ -88,7 +90,7 @@ class MortgageSummary extends React.Component {
                         <th style={minWidth}></th>
                         <th>Interest</th>
                         <th>Interest Total</th>
-                        <th>Total Cost</th>
+                        <th>Mortgage</th>
                     </thead>
                     <tbody>
                         {items}
