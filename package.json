@@ -1,6 +1,6 @@
 {
   "homepage": "https://personalfinancecanada.github.io/mortgage-calculator",
-  "name": "mortgage-calculator",
+  "name": "mortgage-calculator-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
