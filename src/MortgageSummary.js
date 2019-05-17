@@ -82,9 +82,9 @@ class MortgageSummary extends React.Component {
                         </tr>
                     </tbody>
                 </Table>
-                <Table striped bordered responsive>
+                <Table striped bordered responsive size="sm">
                     <thead>
-                        <th>Period</th>
+                        <th></th>
                         <th>Principal Total</th>
                         <th>Principal</th>
                         <th style={minWidth}></th>
