@@ -41,7 +41,7 @@ class MortgageSummary extends React.Component {
     return (
             <Card.Body>
                 <Card.Title>Calculation Summary</Card.Title>
-                <Table striped bordered>
+                <Table striped bordered responsive>
                     <thead>
                         <tr>
                             <th>Category</th>
@@ -82,7 +82,7 @@ class MortgageSummary extends React.Component {
                         </tr>
                     </tbody>
                 </Table>
-                <Table striped bordered>
+                <Table striped bordered responsive>
                     <thead>
                         <th>Period</th>
                         <th>Principal Total</th>
